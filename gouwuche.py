@@ -1,10 +1,17 @@
+#__*__encoding:UTF-8__*__
+
+'''
+Created on 2015年11月18日
+
+@author: Administrator
+'''
 import types
 
 shop = {
-        'byke':int(800),
-        'iphone':int(5000),
-        'milk':int(80),
-        'coffee':int(58)
+        '1':{'byke':int(800)},
+        '2':{'iphone':int(5000)},
+        '3':{'milk':int(80)},
+        '4':{'coffee':int(58)}
         }
 
 while True:
@@ -21,23 +28,34 @@ while True:
     else:
         break
 
-gouwuche = []   
+gouwuche = []
+
+price_list=[] 
+
+  
 while True:
             for i in shop:
-                print i,shop[i]
+                product = shop[i].keys()[0]
+                price = shop[i].values()[0]
+                print i,product,price
+                price_list.append(price)
             
-            i= raw_input('please input the thing you waant to buy:') 
-            if i in shop:
-                
-                if salary >= min(shop.values()):
-                    salary =  salary - shop[i]
+            e= raw_input('please input the no of product you want to buy:') 
+            if e in shop:
+                product = shop[e].keys()[0]
+                price = shop[e].values()[0]
+                if salary >= min(price_list):
+                    salary =  salary - price
                     if salary >= 0:
-                        gouwuche.append(i)
+                        gouwuche.append(product)
                         print 'remine money is %s:'% salary 
+                        print 'you have boungt these products:%s'% gouwuche
+                        print '=' * 40
                     else:
-                        salary = salary + shop[i]
-                        print "you haven't enough  money pay for the shangpin,try other shangpin"
+                        salary = salary + shop[e].values()[0]
+                        print "you haven't enough  money pay for the %s,try other product"% product
                         print 'remine money is %s:'% salary
+                        print '=' * 40
                 else:
                     print 'you have not enoghu money'
                     #打印购物车商品的名称和数量
@@ -49,4 +67,4 @@ while True:
                     print 'remaining money is : %s' %salary
                     break
             else:
-                print  'input not in shop_list' 
+                print  'plz input the nu of product'
